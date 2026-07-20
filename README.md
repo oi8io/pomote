@@ -4,13 +4,13 @@
 
 A quiet, native macOS menu bar focus timer for uninterrupted work and automatic breaks.
 
-Pomote stays out of the way while you focus: focus sessions hide the countdown, cycles continue automatically, and reminders can be visual, silent notifications, or sound.
+Pomote stays out of the way while you focus: the focus countdown stays inside the control panel and off the menu bar, cycles continue automatically, and reminders can be visual, silent notifications, or sound.
 
 ## Features
 
 - Native AppKit UI with a menu bar icon
 - Automatic focus/break cycles
-- Distraction-free focus state without a visible countdown
+- Focus countdown stays visible in the panel but hidden from the menu bar
 - Direct duration input and steppers
 - Visual, silent notification, and sound reminders
 - Chinese and English interface

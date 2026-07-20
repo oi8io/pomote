@@ -357,19 +357,18 @@ typedef NS_ENUM(NSInteger, ReminderMode) {
                       (long)(self.remainingSeconds % 60)];
     BOOL running = self.timer != nil;
     BOOL focusing = self.mode == PomodoroModeFocus;
-    NSString *mode = focusing ? [self zh:@"专注" en:@"Focus"] : [self zh:@"休息" en:@"Break"];
-    NSColor *modeColor = focusing ? NSColor.secondaryLabelColor : NSColor.systemGreenColor;
+    NSString *modeName = focusing ? [self zh:@"专注" en:@"Focus"] : [self zh:@"休息" en:@"Break"];
+    NSString *modeLabel = focusing
+        ? (running ? [self zh:@"专注中" en:@"Focusing"] : [self zh:@"专注" en:@"Focus"])
+        : modeName;
+    NSColor *modeColor = focusing ? NSColor.systemBlueColor : NSColor.systemGreenColor;
     NSString *statusSymbol = focusing ? @"timer" : @"cup.and.saucer.fill";
     if (self.visualAlertTicks > 0 && self.visualAlertOn) statusSymbol = @"bell.badge.fill";
 
-    self.modeLabel.stringValue = mode;
+    self.modeLabel.stringValue = modeLabel;
     self.modeLabel.textColor = modeColor;
-    self.timeLabel.stringValue = focusing
-        ? (running ? [self zh:@"专注中" en:@"Focusing"] : [self zh:@"准备专注" en:@"Ready"])
-        : time;
-    self.timeLabel.font = focusing
-        ? [NSFont systemFontOfSize:30 weight:NSFontWeightMedium]
-        : [NSFont monospacedDigitSystemFontOfSize:42 weight:NSFontWeightSemibold];
+    self.timeLabel.stringValue = time;
+    self.timeLabel.font = [NSFont monospacedDigitSystemFontOfSize:42 weight:NSFontWeightSemibold];
     self.timeLabel.textColor = modeColor;
     self.durationTitle.stringValue = [self zh:@"时长设置" en:@"Durations"];
     self.focusTitle.stringValue = [self zh:@"专注" en:@"Focus"];
@@ -407,10 +406,10 @@ typedef NS_ENUM(NSInteger, ReminderMode) {
     self.progress.progress = 1.0 - ((double)self.remainingSeconds / MAX(1, self.totalSeconds));
 
     self.statusItem.button.image = [NSImage imageWithSystemSymbolName:statusSymbol
-                                            accessibilityDescription:mode];
+                                            accessibilityDescription:modeName];
     self.statusItem.button.title = focusing ? @"" : [NSString stringWithFormat:@" %@", time];
     NSString *runState = running ? [self zh:@"进行中" en:@"Running"] : [self zh:@"已暂停" en:@"Paused"];
-    self.statusItem.button.toolTip = [NSString stringWithFormat:@"%@ · %@", mode, runState];
+    self.statusItem.button.toolTip = [NSString stringWithFormat:@"%@ · %@", modeName, runState];
 }
 
 - (void)start {
