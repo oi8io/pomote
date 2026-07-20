@@ -14,6 +14,8 @@ xcrun clang \
     -fobjc-arc \
     -fmodules-cache-path="$build_dir/ModuleCache" \
     -mmacosx-version-min=13.0 \
+    -arch arm64 \
+    -arch x86_64 \
     -framework Cocoa \
     -framework UserNotifications \
     -O2 \
