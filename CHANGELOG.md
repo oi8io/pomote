@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 - 2026-07-20
+
+### Changed
+
+- Added a minimalist, low-carbon app icon combining Pomote's `P`, a focus cycle, and a leaf
+- Included complete macOS icon resources in local and release builds
+
 ## 1.0.0 - 2026-07-20
 
 ### Features

@@ -22,6 +22,7 @@ xcrun clang \
     "Sources/main.m" \
     -o "$contents_dir/MacOS/Pomote"
 cp "Resources/Info.plist" "$contents_dir/Info.plist"
+cp "Resources/Pomote.icns" "$contents_dir/Resources/Pomote.icns"
 chmod +x "$contents_dir/MacOS/Pomote"
 codesign --force --sign - "$app_dir" >/dev/null
 
